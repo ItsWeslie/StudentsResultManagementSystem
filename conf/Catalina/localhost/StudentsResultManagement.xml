@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context docBase="G:\ResultManagement\StudentsResultManagement\src\main\webapp">
+  <Resources cacheMaxSize="10240">
+    <PreResources base="G:/ResultManagement/StudentsResultManagement/target/classes" className="org.apache.catalina.webresources.DirResourceSet" webAppMount="/WEB-INF/classes"/>
+    <PostResources base="C:/Users/91763/.m2/repository/mysql/mysql-connector-java/8.0.28/mysql-connector-java-8.0.28.jar" className="org.apache.catalina.webresources.FileResourceSet" webAppMount="/WEB-INF/lib/mysql-connector-java-8.0.28.jar"/>
+    <PostResources base="C:/Users/91763/.m2/repository/com/google/protobuf/protobuf-java/3.11.4/protobuf-java-3.11.4.jar" className="org.apache.catalina.webresources.FileResourceSet" webAppMount="/WEB-INF/lib/protobuf-java-3.11.4.jar"/>
+    <PostResources base="C:/Users/91763/.m2/repository/jakarta/servlet/jsp/jakarta.servlet.jsp-api/4.0.0/jakarta.servlet.jsp-api-4.0.0.jar" className="org.apache.catalina.webresources.FileResourceSet" webAppMount="/WEB-INF/lib/jakarta.servlet.jsp-api-4.0.0.jar"/>
+  </Resources>
+</Context>
