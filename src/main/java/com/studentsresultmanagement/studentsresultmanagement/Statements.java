@@ -42,7 +42,28 @@ public class Statements {
         return status;
     }
 
+    //Students management servlet code
+    public static boolean setStudentDetails(Connection conn,String name,String dob,String email,String phone)
+    {
+        boolean status = false;
+        try{
+            String query = "insert into student(name,dob,email,phone)" + "values(?,?,?,?)";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1,name);
+            ps.setString(2,dob);
+            ps.setString(3,email);
+            ps.setString(4,phone);
+            status = ps.executeUpdate()>0;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            System.out.println("Error in setStudentDetails");
+        }
+        return status;
+    }
 
+    //password hashing code
     public static String hashPassword(String password) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256"); // Hashing algorithm
         byte[] hash = md.digest(password.getBytes()); // Perform the hash

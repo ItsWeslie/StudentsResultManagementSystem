@@ -25,7 +25,7 @@
     </div>
     <!-- Student Management Section -->
     <div id="student-section" class="content">
-        <form id="student-form">
+        <form id="student-form" action="${pageContext.request.contextPath}/manage" method="post">
             <h2>Add / Update Student</h2>
             <input type="hidden" id="student-id">
             <input type="text" id="student-name" placeholder="Name" required>
@@ -55,7 +55,7 @@
     </div>
     <!-- Results Management Section -->
     <div id="results-section" class="content hidden">
-        <form id="results-form">
+        <form id="results-form" method="post" action="">
             <h2>Add / Update Results</h2>
             <input type="hidden" id="result-id">
             <input type="number" id="stud-id" placeholder="Student ID" required>

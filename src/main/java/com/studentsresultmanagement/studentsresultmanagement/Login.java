@@ -23,13 +23,18 @@ public class Login extends HttpServlet {
 
             if (rs != null) {
                 while(rs.next()) {
-                    if (rs.getString(5).equals("admin")) {
-                        resp.sendRedirect("adminDash.jsp");
-                    } else if (rs.getString(5).equals("student")) {
-                        resp.sendRedirect("studentDash.jsp");
-                    } else {
+
+                       if (rs.getString(5).equals("admin"))
+                        {
+                            resp.sendRedirect("adminDash.jsp");
+                        } else if (rs.getString(5).equals("student"))
+                        {
+                            resp.sendRedirect("studentDash.jsp");
+                        }
+                       else
+                        {
                         resp.sendRedirect("login.jsp?error=invalid");
-                    }
+                        }
                 }
             }
         }
