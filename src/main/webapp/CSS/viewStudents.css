@@ -1,0 +1,46 @@
+/* General table styling */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+*{
+    font-family: "poppins",sans-serif;
+}
+
+h2{
+    text-align: center;
+    color: #3d5cb8;
+}
+.styled-table {
+    width: 90%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 18px;
+    margin-left: 5%;
+    text-align: center;
+}
+
+.styled-table thead tr {
+    background-color: #3d5cb8;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+
+}
+
+.styled-table th, .styled-table td {
+    padding: 12px 15px;
+    border: 1px solid #dddddd;
+
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
