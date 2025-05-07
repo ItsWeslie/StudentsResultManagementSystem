@@ -5,7 +5,7 @@ import com.mysql.cj.jdbc.MysqlDataSource;
 public class DBSetup {
     private static String URL = "jdbc:mysql://localhost:3306/";
     private static String USERNAME="root";
-    private static String PASSWORD="SamWeslie@14";
+    private static String PASSWORD="your_password";
 
     public static Connection getConnection(String dbName) throws SQLException, ClassNotFoundException {
         MysqlDataSource ds = null;
