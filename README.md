@@ -1,16 +1,22 @@
 🎓 Student Result Management System
+
 📌 Overview
+
 The Student Result Management System is a web application that helps schools manage student marks and results easily. Instead of using paper, this system lets staff enter student data and results online. Students can log in and view their marks anytime.
 It saves time and avoids manual errors with a user-friendly system for both staff and students.
 
 
 🌟 Features
+
 👨‍🎓 For Students:
+
 •	Secure login
 •	Login using Date of Birth (DOB)
 •	View subject-wise marks and pass/fail status
 
+
 🧑‍🏫 For Staff/Admin:
+
 •	Staff login
 •	Add and update student details
 •	Enter marks for each student
@@ -18,6 +24,7 @@ It saves time and avoids manual errors with a user-friendly system for both staf
 
 
 🔧 Technologies Used
+
 •	Backend: Java (Servlets and JSP)
 •	Frontend: HTML, CSS, JavaScript
 •	Database: MySQL
