@@ -10,34 +10,42 @@ import java.util.Map;
 
 public class Statements {
 
-    public static ResultSet getUsersDetails(Connection conn,String email,String password) throws SQLException{
+    //Getting User details functionality
+    public static ResultSet getUsersDetails(Connection conn,String email,String password){
 
         String query = "select * from users where email = ? and password = ?";
         try {
            PreparedStatement ps = conn.prepareStatement(query);
            ps.setString(1,email);
            ps.setString(2,password);
-           ResultSet rs = ps.executeQuery();
-
-           return rs;
+           return ps.executeQuery();
         }
         catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Error in getUsersDetails: ");
+            System.out.println("Error in getUsersDetails");
             return null;
         }
 
     }
 
-    public static ResultSet getStudentDetails(Connection conn, String email, String dob) throws SQLException {
-        PreparedStatement ps = conn.prepareStatement("SELECT * FROM student WHERE email=? AND dob=?");
-        ps.setString(1, email);
-        ps.setString(2, dob);
-        return ps.executeQuery();
+    //Getting Student details functionality
+    public static ResultSet getStudentDetails(Connection conn, String email, String dob){
+        try {
+            String query = "SELECT * FROM student WHERE email=? AND dob=?";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, email);
+            ps.setString(2, dob);
+            return ps.executeQuery();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error in getStudentDetails");
+            return null;
+        }
     }
 
-
-    public static int setUserDetails(Connection con, String name, String email, String password) throws SQLException {
+    //Functionality for setting up user data
+    public static int setUserDetails(Connection con, String name, String email, String password){
         int status = 0;
         try {
             String hashedPassword = hashPassword(password);
@@ -54,8 +62,8 @@ public class Statements {
         return status;
     }
 
-    //Students management servlet code
-    public static int setStudentDetails(Connection conn,String name,int rollno,String studclass,String dob,String gender,String email,String phone)  throws SQLException
+    //Students management servlet code -> adding students
+    public static int setStudentDetails(Connection conn,String name,int rollno,String studclass,String dob,String gender,String email,String phone)
     {
         int status = 0;
         try{
@@ -79,7 +87,8 @@ public class Statements {
     }
 
 
-    public static boolean updateStudent(Connection conn,int id,String name,int rollno,String studclass,String dob,String gender,String email,String phone) throws SQLException
+    //Update student details
+    public static boolean updateStudent(Connection conn,int id,String name,int rollno,String studclass,String dob,String gender,String email,String phone)
     {
         String query = "update student set name=?,rollno=?,studclass=?,dob=?,gender=?,email=?,phone=? where id=?";
         try(PreparedStatement ps = conn.prepareStatement(query)) {
@@ -102,7 +111,8 @@ public class Statements {
         }
     }
 
-    public static boolean deleteStudent(Connection conn,int id) throws SQLException
+    //Delete students using id
+    public static boolean deleteStudent(Connection conn,int id)
     {
         String query = "delete from student where id = ?";
         try{
@@ -122,12 +132,12 @@ public class Statements {
 
 
 
-//Returning Table of content data
-    public static List<Student> fetchStudents(Connection conn) throws SQLException {
+    //Returning Table of content data
+    public static List<Student> fetchStudents(Connection conn) {
         List<Student> studentList = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM student"); // Replace 'student' with your actual table name
+            ResultSet rs = stmt.executeQuery("SELECT * FROM student");
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
@@ -138,7 +148,6 @@ public class Statements {
                 String email = rs.getString("email");
                 String phone = rs.getString("phone");
 
-                // Create student object and add it to the list
                 Student student = new Student(id, name,rollno,className, dob,gender, email, phone);
                 studentList.add(student);
             }
@@ -149,9 +158,9 @@ public class Statements {
     }
 
 
-    //Result management section
+    //Result management section -> adding results of the students
 
-    public static int setResultDetails(Connection conn,int rollno,int tamil,int english,int maths,int science,int social)  throws SQLException
+    public static int setResultDetails(Connection conn,int rollno,int tamil,int english,int maths,int science,int social)
     {
         int status = 0;
         try{
@@ -173,7 +182,7 @@ public class Statements {
         return status;
     }
 
-    public static boolean updateResult(Connection conn,int id,int rollno,String name,String studclass,int tamil,int english,int maths,int science,int social_science) throws SQLException
+    public static boolean updateResult(Connection conn,int id,int rollno,String name,String studclass,int tamil,int english,int maths,int science,int social_science)
     {
         String query1 = "update student set name=?,studclass=? where rollno=?";
         String query2 ="update results set tamil=?,english=?,maths=?,science=?,social_science=? where rollno=?";
@@ -198,18 +207,15 @@ public class Statements {
                 System.out.println("Successfully updated results");
                 return true;
             }
-
-
         }
         catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Error in updateStudent: ");
-
+            System.out.println("Error in updateStudent");
         }
         return false;
     }
 
-    public static boolean deleteResult(Connection conn,int result_id) throws SQLException
+    public static boolean deleteResult(Connection conn,int result_id)
     {
         try{
             String query = "delete from results where result_id = ?";
@@ -226,13 +232,14 @@ public class Statements {
     }
 
 
-    public static List<Results> fetchResults(Connection conn) throws SQLException {
+    public static List<Results> fetchResults(Connection conn){
         List<Results> ResultList = new ArrayList<>();
         try {
-            Statement stmt = conn.createStatement();
+
 
             String query ="select s.rollno,s.name,s.studclass,r.result_id,r.tamil,r.english,r.maths,r.science,r.social_science,r.total_marks,r.status from results r join student s on r.rollno=s.rollno";
-            ResultSet rs = stmt.executeQuery(query);
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int result_id = rs.getInt("result_id");
                 int rollno = rs.getInt("rollno");
@@ -246,7 +253,7 @@ public class Statements {
                 int total_marks = rs.getInt("total_marks");
                 String status = rs.getString("status");
 
-                // Create student object and add it to the list
+
                 Results results = new Results(result_id,rollno, name,studclass, tamil,english, maths, science,social_science,total_marks,status);
                 ResultList.add(results);
             }
@@ -257,8 +264,7 @@ public class Statements {
     }
 
     //get students stats
-
-    public static int getTotalNoOfStudents(Connection conn) throws SQLException {
+    public static int getTotalNoOfStudents(Connection conn){
 
         String query="select count(rollno) from student";
 
@@ -275,7 +281,8 @@ public class Statements {
         return 0;
     }
 
-    public static int getTotalNoOfPass(Connection conn) throws SQLException {
+    //Getting total number of passed students
+    public static int getTotalNoOfPass(Connection conn){
         String query="select count(*) from results where status='Pass'";
 
         try{
@@ -292,7 +299,8 @@ public class Statements {
         return 0;
     }
 
-    public static int getTotalNoOfFail(Connection conn) throws SQLException {
+    //Getting total number of failed students
+    public static int getTotalNoOfFail(Connection conn){
         String query="select count(*) from results where status = 'Fail' ";
         try{
             PreparedStatement ps = conn.prepareStatement(query);
@@ -308,8 +316,9 @@ public class Statements {
         return 0;
     }
 
-public static Map<String,Double> getAverageMarks(Connection conn) throws SQLException {
-
+    //Getting average marks of all subjects
+    public static Map<String,Double> getAverageMarks(Connection conn)
+    {
     String query = "SELECT " +
             "ROUND(AVG(tamil), 2) AS avg_tamil, " +
             "ROUND(AVG(english), 2) AS avg_english, " +
@@ -328,7 +337,6 @@ public static Map<String,Double> getAverageMarks(Connection conn) throws SQLExce
             mp.put("maths", rs.getDouble("avg_maths"));
             mp.put("science", rs.getDouble("avg_science"));
             mp.put("social_science", rs.getDouble("avg_social_science"));
-
         }
     }
     catch(Exception e){
@@ -340,8 +348,8 @@ public static Map<String,Double> getAverageMarks(Connection conn) throws SQLExce
 }
 
 
-
-public static List<Student> getStudentByRollno(Connection conn, int rollno) throws SQLException {
+//Getting student based on their roll number
+public static List<Student> getStudentByRollno(Connection conn, int rollno){
 
         String query = "select * from student where rollno=?";
         List<Student> searchList = new ArrayList<>();
@@ -358,22 +366,25 @@ public static List<Student> getStudentByRollno(Connection conn, int rollno) thro
                 String email = rs.getString("email");
                 String phone = rs.getString("phone");
 
-
                 Student student = new Student(id, name,studrollno,className, dob,gender, email, phone);
                 searchList.add(student);
-
             }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error in getStudentByRollno: ");
         }
 
         return searchList;
 }
 
-
-public static List<Student> getStudentsByClass(Connection conn, String studclass) throws SQLException {
+//Getting student details by class
+public static List<Student> getStudentsByClass(Connection conn, String studclass){
 
     String query = "select * from student where studclass=?";
     List<Student> searchList = new ArrayList<>();
-    try (PreparedStatement ps = conn.prepareStatement(query)) {
+    try {
+        PreparedStatement ps = conn.prepareStatement(query);
         ps.setString(1, studclass);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
@@ -386,24 +397,20 @@ public static List<Student> getStudentsByClass(Connection conn, String studclass
             String email = rs.getString("email");
             String phone = rs.getString("phone");
 
-
             Student student = new Student(id, name, studrollno, className, dob, gender, email, phone);
             searchList.add(student);
-
         }
     }
     catch(Exception e)
     {
             e.printStackTrace();
+            System.out.println("Error in getStudentsByClass");
     }
-
 
     return searchList;
-
     }
 
-
-
+    //Getting students in sorted order based on ascending and descending order
     public static List<Student> getStudentsSortedBy(Connection conn, String field, boolean asc) {
         List<Student> list = new ArrayList<>();
         String direction = asc ? "ASC" : "DESC";
@@ -434,13 +441,14 @@ public static List<Student> getStudentsByClass(Connection conn, String studclass
 
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Error in getStudentsSortedBy");
         }
 
         return list;
     }
 
 
-
+    //Getting students based on their roll number and dob
     public static boolean findStudentByRollNoAndDob(Connection conn, String rollno, String dob) {
         boolean found = false;
 
@@ -465,7 +473,7 @@ public static List<Student> getStudentsByClass(Connection conn, String studclass
         return found;
     }
 
-
+    //Getting result based on students roll number
     public static List<Results> fetchResultByRollNo(Connection conn, String rollno) {
 
         List<Results> ResultList = new ArrayList<>();
@@ -514,7 +522,4 @@ public static List<Student> getStudentsByClass(Connection conn, String studclass
         }
         return hexString.toString();
     }
-
-
-
 }

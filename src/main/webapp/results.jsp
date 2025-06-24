@@ -58,6 +58,5 @@
     <% } %>
     </tbody>
 </table>
-
 </body>
 </html>

@@ -25,7 +25,6 @@
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
 
-
             <%
                 String userRole = (String) session.getAttribute("userRole");
             %>
@@ -114,10 +113,5 @@
         <p>&copy; 2025 Student Portal. All rights reserved.</p>
     </div>
 </footer>
-
-<script>
-
-</script>
-
 </body>
 </html>

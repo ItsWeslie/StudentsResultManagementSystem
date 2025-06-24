@@ -1,20 +1,12 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.studentsresultmanagement.studentsresultmanagement.Student" %>
-<%@ page import="com.studentsresultmanagement.studentsresultmanagement.Results" %><%--
-  Created by IntelliJ IDEA.
-  User: 91763
-  Date: 28-04-2025
-  Time: 22:23
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="com.studentsresultmanagement.studentsresultmanagement.Results" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
     response.setHeader("Pragma", "no-cache"); // HTTP 1.0
     response.setDateHeader("Expires", 0); // Proxies
-
 
     HttpSession Httpsession = request.getSession(false);
     if (session == null || !"staff".equals(Httpsession.getAttribute("userRole"))) {
@@ -31,11 +23,8 @@
 <link rel="stylesheet" href="CSS/AdminDashCSS.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-
 </head>
 <body>
-
-
 <div class="sidebar">
     <h2>Admin Dashboard</h2>
 
@@ -220,10 +209,7 @@
             <%
                 }
             %>
-
             </tbody>
-
-
         </table>
     </div>
 
@@ -245,8 +231,6 @@
                 <p id="failed-students">0</p>
             </div>
         </div>
-
-
 
         <h3>Subject Statistics</h3>
         <table id="statsTable">
@@ -272,10 +256,7 @@
         <canvas id="subjectPerformanceChart" width="600" height="250"></canvas>
 
     </div>
-
 </div>
-
-
 
 <script>
     // Sidebar Navigation
@@ -311,7 +292,6 @@
     });
 
 
-
     //total no of students, no of passed, no of failed details
     function animateNumber(id, target) {
         const el = document.getElementById(id);
@@ -344,7 +324,6 @@
         updateStats();                  // Initial load
         setInterval(updateStats, 5000); // Repeat every 5 seconds
     });
-
 
 
     // Chart.js Graph
@@ -473,7 +452,6 @@
     });
 
 
-
     document.addEventListener('DOMContentLoaded', () => {
         fetch('subjectstats')
             .then(response => {
@@ -536,10 +514,7 @@
     });
 
 
-
-
     //ajax operation for sending data to backend from forms
-
     document.getElementById("add-student").addEventListener("submit", function (e) {
         e.preventDefault(); // Prevent full page reload
 
@@ -569,8 +544,6 @@
                 console.error("Error:", error); // Log error for debugging
             });
     });
-
-
 
     function enableEdit(button) {
         const row = button.closest('tr');
@@ -697,7 +670,6 @@
 
 
     //result management ajax codes
-
     document.getElementById("add-result").addEventListener("submit", function (e) {
         e.preventDefault(); // Prevent full page reload
 
@@ -727,7 +699,6 @@
                 console.error("Error:", error); // Log error for debugging
             });
     });
-
 
     function submitUpdateResult(button) {
         const row = button.closest('tr');
@@ -807,7 +778,6 @@
             });
     }
 
-
     function refreshStudents() {
         const spinner = document.getElementById('student-spinner');
         spinner.style.display = 'block'; // Show spinner in results section
@@ -824,13 +794,6 @@
             location.reload();
         }, 400); // Small delay for smoother visual transition
     }
-
-
-
-
-
-
-
 
     function showToast(message, type) {
         let container = document.querySelector('.toast-container');
@@ -858,11 +821,7 @@
         }, 3000);
     }
 
-
-
-
 </script>
-
 </body>
 </html>
 

@@ -49,6 +49,5 @@
         <button type="submit">View Results</button>
     </form>
 </div>
-
 </body>
 </html>
