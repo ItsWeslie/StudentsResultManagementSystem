@@ -1,0 +1,56 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 40px auto;
+    max-width: 600px;
+    color: #333;
+    background: aliceblue;
+
+}
+h2 {
+    color: #3d5cb8;
+    margin-bottom: 5px;
+    text-align: center;
+}
+.student-info {
+    background: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+}
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    background: white;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+th, td {
+    padding: 12px 20px;
+}
+th {
+    text-align: left;
+    background-color: #3d5cb8;
+    color: white;
+    font-size: 16px;
+}
+td.subject {
+    font-weight: 600;
+    width: 60%;
+    border-right: 1px solid #ddd;
+    background: #f4f7ff;
+}
+td.marks {
+    width: 40%;
+    text-align: right;
+    font-size: 16px;
+    color: #222;
+}
+tr:hover td {
+    background-color: #e6ecff;
+}

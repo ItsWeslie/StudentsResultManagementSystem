@@ -1,144 +1,73 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
-*{
-    font-family: "Poppins", sans-serif;
-}
 body {
-
-    font-size: 20px;
-    font-weight: 600;
     margin: 0;
     padding: 0;
-    background-color: #f0f8ff;
+    font-family: 'Poppins', sans-serif;
+    background: #ffffff;
 }
 
-.container {
-    max-width: 400px;
-    margin: 150px auto;
-    padding: 20px;
-    background: #f0f8ff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-h1, h2 {
+/* Container for the dashboard */
+.dashboard-container {
+    padding: 60px 20px;
     text-align: center;
-    color: #334c99;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.dashboard-container h2 {
+    font-size: 2.5rem;
+    color: #3d5cb8;
 }
 
-label {
-    font-weight: bold;
-    color: #64748b;
-}
-
-#role{
-    font-weight: 550;
-    color: #6d7d9e;
-}
-
-input, button, select {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-}
-
-button {
-    background: #3d5cb8;
-    color: white;
-    cursor: pointer;
-    border: none;
-    transition: background 0.3s;
-}
-
-button:hover {
-    background: #334c99;
-}
-
-.dashboard {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-}
-
-.card {
-    background-color: aliceblue;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-    margin: 15px;
-}
-
-.card a {
-    text-decoration: none;
-    font-size: 18px;
-    color:#64748b; /* Default text color */
-    transition: color 0.3s; /* Smooth transition for text color */
-}
-
-/* Hover effect for the card */
-.card:hover {
-    transform: translateY(-5px); /* Slight lift on hover */
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
-    background-color: #3d5cb8;
-}
-
-/* Change text color on hover */
-.card:hover a {
-    color: #ffff; /* Text changes to a blue color */
-}
-
-/* Styles for the welcome message */
 .welcome-message {
-    text-align: center;
-    margin: 20px 0; /* Spacing between the header and dashboard */
-    font-size: 18px;
-    color: #555; /* Soft grey text color */
+    font-size: 1.2rem;
+    margin: 20px auto 40px;
+    color: #333;
 }
 
-/* Highlight the user name */
-.welcome-message .user-name {
+/* Result form styling */
+.result-form {
+    max-width: 400px;
+    margin: 0 auto;
+    background: #d2d2d2;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.result-form label {
+    display: block;
+    margin: 15px 0 5px;
     font-weight: bold;
-    color: #3d5cb8; /* Blue color for the username */
-    text-transform: capitalize; /* Ensure the name starts with a capital letter */
+    text-align: left;
 }
 
-/* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
-    .welcome-message {
-        font-size: 16px; /* Slightly smaller font for smaller screens */
-    }
-}
-
-
-table {
+.result-form input {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
     padding: 10px;
-    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 6px;
 }
 
-th {
+.result-form button {
+    margin-top: 20px;
+    padding: 10px 25px;
     background-color: #3d5cb8;
     color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
+.result-form button:hover {
+    background-color: #2c4899;
+}
 
+/* Logout link in nav */
+.header .nav .logout-link {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
 
+.header .nav .logout-link:hover {
+    text-decoration: underline;
+}

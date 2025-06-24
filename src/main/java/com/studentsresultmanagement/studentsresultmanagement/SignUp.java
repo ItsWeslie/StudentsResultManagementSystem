@@ -18,11 +18,10 @@ public class SignUp extends HttpServlet {
         String name = req.getParameter("name");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        String role = req.getParameter("role");
         Statements st= null;
         try(Connection conn = DBSetup.getConnection("studentsresult")) {
             st = new Statements();
-            int status = st.setUserDetails(conn, name, email, password, role);
+            int status = st.setUserDetails(conn, name, email, password);
             if(status>0)
             {
                 System.out.println("User has been registered successfully");

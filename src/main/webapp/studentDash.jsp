@@ -1,37 +1,54 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 91763
-  Date: 28-04-2025
-  Time: 22:25
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires", 0);
+
+    HttpSession Httpsession = request.getSession(false);
+    if (Httpsession == null || !"student".equals(Httpsession.getAttribute("userRole"))) {
+        response.sendRedirect("index.jsp");
+        return;
+    }
+
+    String studentName = (String) Httpsession.getAttribute("studentName");
+    int studentRollNo = (int) Httpsession.getAttribute("studentRollNo");
+%>
 <!DOCTYPE html>
 <html lang="en">
-<head>z
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard</title>
-    <link rel="stylesheet" href="CSS/dashboardCSS.css">
+    <link rel="stylesheet" href="CSS/index.css">
+    <link rel="stylesheet" href="CSS/studentDashboardCSS.css">
 </head>
 <body>
-<div class="container">
-    <h1>Student Dashboard</h1>
-    <!-- Welcome Section -->
-    <div class="welcome-message">
-        <p>Welcome, <span class="user-name">John Doe</span>!</p>
+
+<header class="header">
+    <div class="container">
+        <h1 class="logo">Student Portal</h1>
+        <nav class="nav">
+            <a href="index.jsp">Home</a>
+            <a href="index.jsp">Features</a>
+            <a href="index.jsp">Contact</a>
+            <a href="logout" class="logout-link">Logout</a>
+        </nav>
     </div>
-    <div class="dashboard">
-        <div class="card">
-            <a href="" id="view-results">View Results</a>
-        </div>
-    </div>
+</header>
+
+<div class="dashboard-container">
+    <h2>Welcome, <%= studentName %> 👋</h2>
+    <p class="welcome-message">Please confirm your Date of Birth to view your result.</p>
+
+    <form action="fetchResult" method="post" class="result-form">
+        <label for="rollno">Roll Number</label>
+        <input type="text" id="rollno" name="rollno_display" value="<%= studentRollNo %>" readonly>
+
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" name="dob" required>
+
+        <button type="submit">View Results</button>
+    </form>
 </div>
-<script>
-    document.getElementById("view-results")?.addEventListener("click", function (event) {
-        event.preventDefault(); // Prevent default anchor action
-        window.location.href = "results.jsp"; // Redirect to results.html
-    });
-</script>
+
 </body>
 </html>

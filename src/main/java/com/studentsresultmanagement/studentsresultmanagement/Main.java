@@ -6,6 +6,8 @@ public class Main {
 
     public static void main(String[] args) {
 
+
+
         try(Connection conn = DBSetup.getConnection("studentsresult")) {
 
             if(conn != null) {

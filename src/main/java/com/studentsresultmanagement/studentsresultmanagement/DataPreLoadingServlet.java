@@ -17,6 +17,9 @@ public class DataPreLoadingServlet extends HttpServlet {
         try (Connection conn = DBSetup.getConnection("studentsresult")) {
             List<Student> studentList = Statements.fetchStudents(conn);
             req.setAttribute("student", studentList);
+
+            List<Results> resultsList = Statements.fetchResults(conn);
+            req.setAttribute("results", resultsList);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -14,6 +14,9 @@ body {
     min-height: 100vh;
     background-color: #f0f8ff;
     padding: 20px;
+    background: linear-gradient(rgba(2, 4, 8, 0.2),rgba(2,4,8,0.2)),url('Images/login-3.jpg') no-repeat center;
+    background-size: cover;
+    backdrop-filter: blur(5px);
 }
 
 /* Form Container */

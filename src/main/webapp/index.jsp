@@ -1,4 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+    String userStaff = (String) session.getAttribute("userRole");
+    if ("staff".equals(userStaff)) {
+        response.sendRedirect("admin-dash");
+        return;
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +24,32 @@
             <a href="#features">Features</a>
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
+
+
+            <%
+                String userRole = (String) session.getAttribute("userRole");
+            %>
+
+            <% if ("student".equals(userRole)) { %>
+            <a href="studentDash.jsp">View Result</a>
+            <% } %>
+
+            <% if (userRole != null) { %>
+            <!-- Show Logout if logged in -->
+            <div class="dropdown">
+                <a href="logout" class="dropbtn">Logout <i class="fas fa-sign-out-alt"></i></a>
+            </div>
+            <% } else { %>
+            <!-- Show Login options if not logged in -->
+            <div class="dropdown">
+                <a href="#" class="dropbtn">Login <i class="fas fa-caret-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="login.jsp">Staff Login</a>
+                    <a href="studentLogin.jsp">Student Login</a>
+                </div>
+            </div>
+            <% } %>
+
         </nav>
     </div>
 </header>
@@ -25,10 +58,6 @@
     <div class="container">
         <h2>Welcome to the Student Portal</h2>
         <p>Effortlessly manage your academic records, access your results, and stay updated with all the latest.</p>
-        <div class="hero-buttons">
-            <a href="login.jsp" class="btn primary">Login</a>
-            <a href="#features" class="btn secondary">Learn More</a>
-        </div>
     </div>
 </section>
 
